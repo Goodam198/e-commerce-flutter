@@ -19,7 +19,6 @@ class ProductProvider with ChangeNotifier{
         productTax: 0,
         id: 0,
         numberOfComments:  101,
-        isTrending: true,
         numberOfLikes: 23,
         isLiked: false,
         price: 949.00,
@@ -58,7 +57,6 @@ class ProductProvider with ChangeNotifier{
         productTax: 0,
         id: 1,
         numberOfComments: 90,
-        isTrending: false,
         numberOfLikes: 20,
         isLiked:  false,
         price: 1000.00,
@@ -96,7 +94,6 @@ class ProductProvider with ChangeNotifier{
         productTax: 0,
         id: 2,
         numberOfComments: 85,
-        isTrending:  false,
         numberOfLikes: 18,
         isLiked:  false,
         price:  100.00,
@@ -134,7 +131,6 @@ class ProductProvider with ChangeNotifier{
         productTax: 0,
         id: 3,
         numberOfComments: 73,
-        isTrending: false,
         numberOfLikes: 13,
         isLiked:  false,
         price: 250.00,
@@ -175,7 +171,6 @@ class ProductProvider with ChangeNotifier{
         productTax: 0,
         id: 4,
         numberOfComments:  55,
-        isTrending:  false,
         numberOfLikes: 10,
         isLiked: false,
         price: 1300.00,
@@ -217,7 +212,6 @@ class ProductProvider with ChangeNotifier{
       productTax: 0,
       id: 0,
       numberOfComments:  101,
-      isTrending: true,
       numberOfLikes: 23,
       isLiked: false,
       price: 949.00,
@@ -273,6 +267,23 @@ class ProductProvider with ChangeNotifier{
     notifyListeners();
   }
 
+  int numberOfProducts = 1;
+
+  void addProduct(){
+
+    numberOfProducts++;
+
+
+  }
+
+
+  void reduceProduct(){
+
+    if(numberOfProducts > 0 ){
+      numberOfProducts--;
+    }
+
+  }
 
 
   double getCartSubTotal(){
@@ -310,16 +321,21 @@ class ProductProvider with ChangeNotifier{
 
   }
 
-  void rateProduct(){
-
-    notifyListeners();
-  }
 
 
 
   void likeProduct(productId){
 
-    products[productId].isLiked = !products[productId].isLiked;
+    if(products[productId].isLiked){
+      products[productId].isLiked = !products[productId].isLiked;
+      products[productId].numberOfLikes--;
+    }
+    else{
+
+      products[productId].isLiked = !products[productId].isLiked;
+      products[productId].numberOfLikes++;
+
+    }
 
     notifyListeners();
   }

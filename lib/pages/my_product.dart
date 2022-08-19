@@ -90,7 +90,7 @@ class MyProduct extends StatelessWidget {
                 Text(
                   'trending'.toUpperCase(),
                   style: TextStyle(
-                      color: productProvider.selectedProduct.isTrending? Color(0xffE10000): Colors.white,
+                      color:Color(0xffE10000),
                       fontFamily: 'Poppins',
                       fontSize: 11,
                       fontWeight: FontWeight.w600,

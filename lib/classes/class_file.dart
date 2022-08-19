@@ -19,7 +19,6 @@ class Product{
   bool isLiked;
   bool isCart;
   String image;
-  bool isTrending;
   String description;
   double price;
   int numberOfLikes;
@@ -32,10 +31,10 @@ class Product{
 
   Product({
 
+
     required this.productTax,
     required this.id,
     required this.numberOfComments,
-    required this.isTrending,
     required this.numberOfLikes,
     required this.isLiked,
     required this.price,

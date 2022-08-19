@@ -76,17 +76,20 @@ class Cart extends StatelessWidget {
                               children: [
                                 Image.asset(
                                   'assets/images/${cartDetail.image}',
-                                  width: 200,
-                                  height: 148,
+                                  width: 180,
+                                  height: 128,
                                 ),
                               ],
                             ),
 
-                            Divider(
-                              height: 1,
-                              thickness: 1,
-                              indent: 15,
-                              endIndent: 15,
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 12, 0, 12),
+                              child: Divider(
+                                height: 1,
+                                thickness: 1,
+                                indent: 15,
+                                endIndent: 15,
+                              ),
                             ),
 
                             Row(
@@ -130,7 +133,7 @@ class Cart extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
                                   child: Text(
-                                    '${cartDetail.price}',
+                                    '\$${cartDetail.price}',
                                     style: TextStyle(
                                       fontFamily: 'Poppins',
                                       fontSize: 20,
@@ -149,7 +152,12 @@ class Cart extends StatelessWidget {
                                 children: [
                                   Expanded(
                                       flex: 2,
-                                      child: Image.asset('assets/icons/minusbutton.png')
+                                      child: GestureDetector(
+                                        onTap: (){
+                                          productProvider.reduceProduct();
+                                        },
+                                          child: Image.asset('assets/icons/minusbutton.png')
+                                      )
                                   ),
 
                                   Expanded(
@@ -164,7 +172,7 @@ class Cart extends StatelessWidget {
                                       ),
                                       child: Center(
                                         child: Text(
-                                          '1',
+                                          productProvider.numberOfProducts.toString(),
                                         ),
                                       ),
                                     ),
@@ -172,7 +180,12 @@ class Cart extends StatelessWidget {
 
                                   Expanded(
                                       flex: 2,
-                                      child: Image.asset('assets/icons/addbutton.png')
+                                      child: GestureDetector(
+                                        onTap: (){
+                                          productProvider.addProduct();
+                                        },
+                                          child: Image.asset('assets/icons/addbutton.png')
+                                      )
                                   )
                                 ],
                               ),

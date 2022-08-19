@@ -21,50 +21,72 @@ class Hot extends StatelessWidget {
               Expanded(
                 child: GridView.count(
                   crossAxisCount: 1,
-                  children: [
+                  children: productProvider.products.map((hot) => Card(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          height: 360,
+                          child: Image.asset(
+                            "assets/images/${hot.image}",
+                            width: 350,
+                            height:400,
+                          ).blurred(
+                              colorOpacity: 0.0,
+                              blur: 15.0,
+                              overlay: Padding(
+                                padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
+                                child: Column(
+                                    children: [
+                                      Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
 
-                    Container(
-                      height: 200,
-                      color: Colors.red,
-                    ),
-                    Container(
-                      height: 200,
-                      color: Colors.brown,
-                    ),
-                    Container(
-                      height: 200,
-                      color: Colors.indigo,
-                    ),
-                    Container(
-                      height: 200,
-                      color: Colors.orange,
-                    ),
-                    Container(
-                      height: 200,
-                      color: Colors.yellow,
-                    ),
-                    Container(
-                      height: 200,
-                      color: Colors.green,
-                    ),
-                    Container(
-                      height: 200,
-                      color: Colors.grey,
-                    ),
-                    Container(
-                      height: 200,
-                      color: Colors.amber,
-                    ),
-                    Container(
-                      height: 200,
-                      color: Colors.cyan,
-                    ),
-                    Container(
-                      height: 200,
-                      color: Colors.blue,
-                    )
+                                            IconButton(
+                                              onPressed: (){},
+                                              icon: Image.asset(
+                                                "assets/icons/backwardtick.png",
+                                                color: Colors.black,
+                                              ),
+                                            ),
 
-                  ],
+
+                                            Image.asset(
+                                              "assets/images/${hot.image}",
+                                              width: 150,
+                                              height: 100,
+                                            ),
+
+                                            IconButton(
+                                              onPressed: (){},
+                                              icon: Image.asset(
+                                                "assets/icons/forwardtick.png",
+                                                color: Colors.black,
+                                              ),
+                                            ),
+
+                                          ]
+                                      ),
+
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                        child: Text(
+                                          "${hot.name}",
+                                          style:
+                                          TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                              fontFamily: 'Poppins'
+                                          ),
+                                        ),
+                                      )
+
+                                    ]),
+                              )),
+                        ),
+                      ],
+                    ),
+                  )).toList()
                 ),
               )
             ],
