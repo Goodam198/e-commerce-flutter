@@ -123,7 +123,7 @@ class MyProduct extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    productProvider.selectedProduct.price.toString(),
+                    '\$${productProvider.selectedProduct.price.toString()}',
                     style: TextStyle(
                         fontFamily: 'Poppins',
                         fontSize: 16,

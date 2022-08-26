@@ -250,38 +250,39 @@ class ProductProvider with ChangeNotifier{
 
   }
 
-  List<Product> cartProducts = [];
+  List<CartItem> cart = [];
 
   void addToCart(productId){
 
-
-      if(cartProducts.contains(products[productId])){
+    int index = cart.indexWhere((cartItem) => cartItem.product.id == productId );
+      if( index != -1){
         products[productId].isCart = !products[productId].isCart;
-        cartProducts.remove(products[productId]);
+        cart.removeAt(index);
       }
+
       else{
         products[productId].isCart = !products[productId].isCart;
-        cartProducts.add(products[productId]);
+        cart.add(CartItem(product: products[productId]));
       }
 
     notifyListeners();
   }
 
-  int numberOfProducts = 1;
+  void addProduct(index){
 
-  void addProduct(){
+    cart[index].productCount++;
 
-    numberOfProducts++;
-
+    notifyListeners();
 
   }
 
 
-  void reduceProduct(){
+  void reduceProduct(index){
 
-    if(numberOfProducts > 0 ){
-      numberOfProducts--;
+    if(cart[index].productCount > 1 ){
+      cart[index].productCount--;
     }
+    notifyListeners();
 
   }
 
@@ -290,9 +291,9 @@ class ProductProvider with ChangeNotifier{
 
     double subTotal = 0;
 
-    for (var product in cartProducts) {
+    for (var cartItem in cart) {
 
-      subTotal += product.price;
+      subTotal += (cartItem.product.price * cartItem.productCount) ;
 
     }
     return subTotal;
@@ -303,8 +304,8 @@ class ProductProvider with ChangeNotifier{
 
     double totalTax = 0;
 
-    for (var product in cartProducts) {
-      totalTax += product.productTax;
+    for (var cartItem in cart) {
+      totalTax += cartItem.product.productTax;
 
     }
     return totalTax;

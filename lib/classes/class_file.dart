@@ -52,6 +52,15 @@ class Product{
 }
 
 
+class CartItem{
+
+  Product product;
+  int productCount;
+
+  CartItem({required this.product,this.productCount = 1 });
+
+}
+
 class User{
   String name;
   String image;

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:e_commerce/pages/Loader.dart';
 
-
 class MyApp extends StatelessWidget {
 
   @override
